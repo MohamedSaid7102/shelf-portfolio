@@ -1,8 +1,9 @@
 {
-  "name": "vite-project",
+  "name": "shelf-portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "author": "Mohamed Shelf",
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
@@ -24,3 +25,4 @@
     "vite": "^4.0.0"
   }
 }
+

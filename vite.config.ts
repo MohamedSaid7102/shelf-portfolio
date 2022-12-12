@@ -18,5 +18,8 @@ export default defineConfig({
       '@myTypes': path.resolve(__dirname, './types'),
     },
   },
+  server: {
+    host: true,
+  },
 });
 

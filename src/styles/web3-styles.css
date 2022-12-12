@@ -1,0 +1,46 @@
+/* ****************************** */
+/* **** Web 3.0 Style Classes Start**** */
+/* ****************************** */
+.gradient-border {
+  border: 5px double transparent;
+  background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)),
+    radial-gradient(circle at left top, rgb(1, 110, 218), rgb(217, 0, 192));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.box-glow:hover,
+.box-glow:focus-visible {
+  box-shadow: 0 0 30px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
+}
+
+.text-glow {
+  text-shadow: 0 0 30px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffcc33 0%, #e233ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient::selection {
+  background: #333;
+  background-clip: initial;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+  color: #fff;
+}
+
+.text-gradient.text-glow {
+  background: linear-gradient(135deg, #cb5eee 0%, #4be1ec 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgb(192 219 255 / 45%), 0 0 12px rgb(65 120 255 / 14%);
+}
+
+/* ****************************** */
+/* **** Web 3.0 Style Classes End**** */
+/* ****************************** */

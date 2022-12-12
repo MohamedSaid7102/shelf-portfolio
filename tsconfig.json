@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES5",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -14,8 +14,23 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["./src/components/*", "./src/components"],
+      "@assets/*": ["./src/assets/*", "./src/assets"],
+      "@hooks/*": ["./src/hooks/*", "./src/hooks"],
+      "@pages/*": ["./src/pages/*", "./src/pages"],
+      "@redux/*": ["./src/redux/*", "./src/redux"],
+      "@router/*": ["./src/router/*", "./src/router"],
+      "@styles/*": ["./src/styles/*", "./src/styles"],
+      "@utils/*": ["./src/utils/*", "./src/utils"],
+      "@myTypes/*": ["./types/*", "./types"]
+    }
   },
   "include": ["src"],
+  // "extends": "./tsconfig.paths.json",
   "references": [{ "path": "./tsconfig.node.json" }]
 }
+

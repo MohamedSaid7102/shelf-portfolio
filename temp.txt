@@ -1,0 +1,273 @@
+
+/* ⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠ */
+/* ⚠⚠⚠⚠    TODO: Edit root variables to reflect 👀     ⚠⚠⚠⚠*/
+/* ⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠ */
+:root {
+  --base-font-size: 16px;
+  --mobile-font-size: 16px;
+
+  --_size: 1.5rem;
+  --_radius: 0.2em;
+  --_tspeed_fast: 150ms; /** Timing speed */
+  --_tspeed_slow: 400ms;
+  --_ttype_squish: cubic-bezier(0.86, -0.1, 0.27, 1.15);
+
+  /* light color scheme */
+  --bg--light: 250 60% 98%;
+  --txt--light: 216 23% 23%;
+  --primary--light: 214 32% 91%;
+  --secondary--light: 195 33% 98%;
+  --accent--light: 177 52% 46%;
+  --selection-bg-light: 0 0% 20%;
+  --selection-txt-light: 0 0% 98%;
+  --outline-color-light: 206 8% 18%;
+  --placeholder-light: 0 0% 33%;
+
+  /* dark color scheme */
+  --bg--dark: 197, 95%, 8%;
+  --txt--dark: 210 24% 98%;
+  --primary--dark: 216 23% 21%;
+  --secondary--dark: 216 19% 28%;
+  --accent--dark: 173 66% 70%;
+  --selection-bg-dark: 0 0% 78%;
+  --selection-txt-dark: 0 0% 0%;
+  --outline-color-dark: 206 100% 96%;
+  --placeholder-dark: 0 0% 79%;
+
+  /** Other important stuff for dark mode */
+  --media-brightness-dark: 0.8;
+  --media-contrast-dark: 1.2;
+}
+
+/* Theming Start*/
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: var(--bg--light);
+    --h-txt: var(--txt--light);
+    --m-txt: var(--h-txt) / 80%;
+    --primary: var(--primary--light);
+    --secondary: var(--secondary--light);
+    --accent: var(--accent--light);
+    --selection-bg: var(--selection-bg-light);
+    --selection-txt: var(--selection-txt-light);
+    --outline: var(--outline-color-light);
+    --placeholder: var(--placeholder-light);
+    color-scheme: light;
+  }
+  img,
+  video,
+  picture {
+    filter: brightness(1) contrast(1);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--bg--dark);
+    --h-txt: var(--txt--dark);
+    --m-txt: var(--h-txt) / 80%;
+    --primary: var(--primary--dark);
+    --secondary: var(--secondary--dark);
+    --accent: var(--accent--dark);
+    --selection-bg: var(--selection-bg-dark);
+    --selection-txt: var(--selection-txt-dark);
+    --outline: var(--outline-color-dark);
+    --placeholder: var(--placeholder-dark);
+    color-scheme: dark;
+  }
+  img,
+  video,
+  picture {
+    filter: brightness(var(--media-brightness-dark))
+      contrast(var(--media-contrast-dark));
+  }
+}
+
+:root[data-theme='light'] {
+  --bg: var(--bg--light);
+  --h-txt: var(--txt--light);
+  --m-txt: var(--h-txt) / 80%;
+  --primary: var(--primary--light);
+  --secondary: var(--secondary--light);
+  --accent: var(--accent--light);
+  --selection-bg: var(--selection-bg-light);
+  --selection-txt: var(--selection-txt-light);
+  --outline: var(--outline-color-light);
+  --placeholder: var(--placeholder-light);
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg: var(--bg--dark);
+  --h-txt: var(--txt--dark);
+  --m-txt: var(--h-txt) / 80%;
+  --primary: var(--primary--dark);
+  --secondary: var(--secondary--dark);
+  --accent: var(--accent--dark);
+  --selection-bg: var(--selection-bg-dark);
+  --selection-txt: var(--selection-txt-dark);
+  --outline: var(--outline-color-dark);
+  --placeholder: var(--placeholder-dark);
+  color-scheme: dark;
+}
+
+/* lower the brightness of images and videos in darkmood, to make it more comfortable to user eyes */
+:root[data-theme='dark'] img,
+:root[data-theme='dark'] video,
+:root[data-theme='dark'] picture {
+  filter: brightness(var(--media-brightness-dark))
+    contrast(var(--media-contrast-dark));
+}
+
+:root[data-theme='light'] img,
+:root[data-theme='light'] video,
+:root[data-theme='light'] picture {
+  filter: brightness(1) contrast(1);
+}
+
+/* Theming End*/
+
+::placeholder {
+  color: hsl(var(--placeholder));
+  font-size: calc(13px + (24 - 13) * ((100vw - 300px) / (1600 - 300)));
+}
+
+/* Edit Selection color */
+::selection {
+  background-color: hsl(var(--selection-bg) / 0.8);
+  color: hsl(var(--selection-txt));
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overscroll-behavior: contain; /**ForPreventingScrollchain*/
+
+  transition: all 200ms ease-in-out;
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  -ms-transition: all 200ms ease-in-out;
+  -o-transition: all 200ms ease-in-out;
+}
+
+html,
+body {
+  /* overflow-x: hidden; */
+  max-width: 100vw;
+
+  scroll-behavior: smooth;
+  /* To make page width responseve without laging */
+  transition: initial;
+  -webkit-transition: initial;
+  -moz-transition: initial;
+  -ms-transition: initial;
+  -o-transition: initial;
+}
+
+html {
+  font-size: 62.5%; /** 1rem = 10px */
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  /* I used this equation to responsive font-size */
+  /*  f  font-size: calc([minimum size] + ([maximum size] - [minimum size]) *
+   ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+  font: 400 calc(var(--base-font-size, 16px) + 6 * ((100vw - 320px) / 680)) /
+      1.2 -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
+
+  background-color: hsl(var(--bg));
+  color: hsl(var(--m-txt));
+}
+
+/* Mobile font-size = 15px */
+@media screen and (max-width: 320px) {
+  body {
+    font-size: var(--mobile-font-size, 15px);
+  }
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* To make outline abit more clean */
+/* It's not a good idea to set outline: none, Accessability will be lost on high contrast mode in windows,
+because this mode override things like borders, background colors and box shadows,
+and A lot of custom focus styles are reliant on using these three properties and hiding the outline.
+Check this article for more: https://www.nicchan.me/blog/tips-for-focus-styles/*/
+a:focus-visible {
+  outline: 0.15em dashed hsl(var(--outline));
+  outline-offset: 0.1em 0.2em;
+  border-radius: 5px;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: inline-block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition: initial;
+    -webkit-transition: initial;
+    -moz-transition: initial;
+    -ms-transition: initial;
+    -o-transition: initial;
+  }
+}
+
