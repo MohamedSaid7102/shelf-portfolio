@@ -32,7 +32,7 @@ function App() {
         <main className="bg-[rgba(180,180,180,0.3)] backdrop:blur-md backdrop-blur-md rounded-xl p-5 flex flex-col gap-12 items-center">
           {/* Header */}
           <header className="w-full text-center py-7">
-            <h1>Portfolio</h1>
+            <h1>Front-end Projects</h1>
           </header>
           {/* Content */}
           <section className="flex flex-row flex-wrap gap-8 justify-center items-start">

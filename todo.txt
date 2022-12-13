@@ -1,0 +1,9 @@
+[ ] Fix online resume
+[ ] Make unique new images for your projects 'banner' and save in 'assets/images/*'
+[ ] Compress 'assets/images/*'
+[ ] Update Projects Images on your portfolio
+[ ] test all till now
+
+[ ] Add rest of projects
+
+[ ] Lazy loading for projects images

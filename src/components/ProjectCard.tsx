@@ -21,16 +21,28 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   tagsList,
 }) => {
   return (
-    <article className="sm:max-w-[360px] max-w-[300px] bg-[rgba(50,50,50,0.5)] rounded-2xl overflow-hidden flex flex-col flex-start gap-5">
+    <article className="card-wrap sm:w-[350px] w-[300px] bg-[rgba(50,50,50,0.5)] rounded-2xl overflow-hidden flex flex-col flex-start gap-5">
       {/*<!-- 1. Image --> */}
       <picture className="flex h-[180px] overflow-hidden justify-center items-center bg-gradient-to-r from-cyan-500 to-blue-500">
-        <a href={demoLink} aria-label={imgAlt} tabIndex={-1}>
-          <img src={imgSrc} alt={imgAlt} />
+        <a
+          href={demoLink}
+          aria-label={imgAlt}
+          tabIndex={-1}
+          className="w-full h-full"
+        >
+          <img
+            src={imgSrc}
+            alt={imgAlt}
+            className="w-full h-full object-cover"
+          />
         </a>
       </picture>
       {/*<!-- 2. Content --> */}
       <div className="flex flex-col items-center gap-5 sm:items-start text-center sm:text-left p-5 pb-0">
-        <a href={demoLink} className="text-gradient text-[17px] sm:text-[35px]">
+        <a
+          href={demoLink}
+          className="text-gradient text-[17px] sm:text-[30px] py-3"
+        >
           {title}
         </a>
         <p className="font-light text-[13px] sm:text-[20px]">{desc}</p>
@@ -67,9 +79,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   d="M128,56C48,56,16,128,16,128s32,72,112,72,112-72,112-72S208,56,128,56Z"
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></path>
                 <circle
                   cx="128"
@@ -77,9 +89,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   r="40"
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></circle>
               </svg>
             </a>
@@ -115,17 +127,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   points="64 88 16 128 64 168"
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></polyline>
                 <polyline
                   points="192 88 240 128 192 168"
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></polyline>
                 <line
                   x1="160"
@@ -134,9 +146,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   y2="216"
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="16"
                 ></line>
               </svg>
             </a>
@@ -150,7 +162,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       >
         {tagsList.map((tag, index) => (
           <button
-            className="card-tag font-extralight sm:font-medium text-[13px] sm:text-[17px]"
+            className="card-tag font-extralight sm:font-medium text-[13px] sm:text-[17px] transition-all "
             data-filter={tag.toLocaleLowerCase()}
             aria-label={`filter projects by ${tag}`}
             key={index}

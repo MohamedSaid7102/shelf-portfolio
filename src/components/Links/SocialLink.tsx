@@ -13,7 +13,7 @@ export const SocialLink: React.FC<SocialLinkProps> = ({ title, url, logo }) => {
       aria-label={title}
       title={title}
       target="_blank"
-      className="border border-white p-4 rounded-2xl shadow-2xl hover:shadow-none hover:rounded-none focus-visible:rounded-none box-glow"
+      className="border border-white p-4 rounded-2xl shadow-2xl hover:shadow-none hover:rounded-none focus-visible:rounded-none"
     >
       {logo}
     </a>
