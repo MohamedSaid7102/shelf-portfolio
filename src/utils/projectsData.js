@@ -35,16 +35,6 @@ export const projectsData = [
     codeLink: 'https://codepen.io/mohamedsaid7102/pen/gOKNOpo',
     tagsList: ['HTML', 'CSS', 'JS'],
   },
-  // TODO
-  {
-    title: 'Web Resume',
-    desc: 'Web version Resume',
-    imgSrc: project4Image,
-    imgAlt: 'photo of a resume',
-    demoLink: 'src/projects/project4/',
-    codeLink: '',
-    tagsList: ['HTML', 'CSS', 'JS'],
-  },
   {
     title: 'Before&After',
     desc: 'Before&After Image slider, with support for mobile swipes on.',
@@ -70,6 +60,15 @@ export const projectsData = [
     imgAlt: 'photo of a mind game cards',
     demoLink: 'https://codepen.io/mohamedsaid7102/full/xxPJqOz',
     codeLink: 'https://codepen.io/mohamedsaid7102/pen/xxPJqOz',
-    tagsList: ['HTML', 'CSS', 'JS'],
+    tagsList: ['HTML', 'CSS', 'JS', 'game'],
+  },
+  {
+    title: 'Old Web Resume',
+    desc: 'Web version Resume, This is an old one',
+    imgSrc: project4Image,
+    imgAlt: 'photo of a resume',
+    demoLink: 'https://website-old-resume.vercel.app/',
+    codeLink: 'https://github.com/MohamedSaid7102/website--old--resume',
+    tagsList: ['HTML', 'CSS'],
   },
 ];
