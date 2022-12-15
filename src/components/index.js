@@ -7,8 +7,12 @@ import { ProjectCard } from './ProjectCard';
 import { TextIconBtn } from './buttons/TextIconBtn';
 import { TextIconLink } from './Links/TextIconLink';
 import { Divider } from './Divider';
+import { Filters } from './Filters';
+import { Filter } from './Filter';
 // icons
-import { DownloadFile } from './icons/DownloadFile';
+import { DownloadFile as DownloadFileIcon } from './icons/DownloadFile';
+import { Close as CloseIcon } from './icons/Close';
+
 export {
   AuthorHeading,
   Avatar,
@@ -19,6 +23,9 @@ export {
   TextIconBtn,
   TextIconLink,
   Divider,
+  Filters,
+  Filter,
   // icons
-  DownloadFile,
+  DownloadFileIcon,
+  CloseIcon,
 };

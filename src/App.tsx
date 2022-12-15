@@ -6,11 +6,12 @@ import {
   ProjectCard,
   TextIconLink,
   Divider,
+  Filters,
 } from '@components/';
 import myPic from '@assets/images/my-pic.jpg';
 import { projectsData } from '@utils/projectsData';
 
-import { DownloadFile as DownloadFileIcon } from '@components/';
+import { DownloadFileIcon } from '@components/';
 import { ResumeURL } from './config';
 
 function App() {
@@ -44,8 +45,10 @@ function App() {
         {/* Content */}
         <main className="bg-[rgba(180,180,180,0.3)] backdrop:blur-md backdrop-blur-md rounded-xl p-5 flex flex-col gap-12 items-center">
           {/* Header */}
-          <header className="w-full text-center py-7">
+          <header className="w-full text-center py-7 flex flex-col gap-10">
             <h1>Front-end Projects</h1>
+            {/* Filtering section */}
+            <Filters userSelectedFilter={true} />
           </header>
           {/* Content */}
           <section className="flex flex-row flex-wrap gap-8 justify-center items-start">

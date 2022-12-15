@@ -2,17 +2,26 @@ import React from 'react';
 
 interface DownloadFileProps {
   className?: string;
+  width?: number;
+  height?: number;
 }
 
-export const DownloadFile: React.FC<DownloadFileProps> = ({ className }) => {
+export const DownloadFile: React.FC<DownloadFileProps> = ({
+  className,
+  width,
+  height,
+  ...props
+}) => {
   return (
     <svg
+      aria-hidden={true}
       xmlns="http://www.w3.org/2000/svg"
-      width="192"
-      height="192"
+      width={`${width ? width : '45'}`}
+      height={`${height ? height : '45'}`}
+      className={`${className} pointer-events-none`}
       fill="currentColor"
       viewBox="0 0 256 256"
-      className={`${className} pointer-events-none`}
+      {...props}
     >
       <rect width="256" height="256" fill="none"></rect>
       <path
