@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .outline-btn-type-1 {
+    @apply border border-white rounded-2xl shadow-2xl hover:shadow-none hover:rounded-none focus-visible:rounded-none transition-all flex justify-center items-center;
+  }
+}
+
 *,
 *::before,
 *::after {

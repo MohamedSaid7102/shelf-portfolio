@@ -4,9 +4,14 @@ import {
   ODCLink,
   ContactLinks,
   ProjectCard,
+  TextIconLink,
+  Divider,
 } from '@components/';
 import myPic from '@assets/images/my-pic.jpg';
 import { projectsData } from '@utils/projectsData';
+
+import { DownloadFile as DownloadFileIcon } from '@components/';
+import { ResumeURL } from './config';
 
 function App() {
   return (
@@ -27,6 +32,14 @@ function App() {
             imgPath={myPic}
           />
           <ContactLinks />
+          <Divider />
+          {/* Download CV link */}
+          <TextIconLink
+            icon={<DownloadFileIcon className="w-[40px] h-[40px]" />}
+            href={ResumeURL}
+            text="My Resume"
+            ariaLabel="Download Shelf CV"
+          />
         </aside>
         {/* Content */}
         <main className="bg-[rgba(180,180,180,0.3)] backdrop:blur-md backdrop-blur-md rounded-xl p-5 flex flex-col gap-12 items-center">
@@ -59,6 +72,5 @@ function App() {
     </div>
   );
 }
-
 export default App;
 

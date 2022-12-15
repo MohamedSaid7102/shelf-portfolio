@@ -1,6 +1,0 @@
-[ ] Add rest of small projects
-
-[ ] Look at your todo
-
-[ ] Implement filtering feature
-[ ] Lazy loading for projects images
