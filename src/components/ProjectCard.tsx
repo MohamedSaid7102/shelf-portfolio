@@ -3,6 +3,7 @@ import { projectDataType, filterTagType } from '@myTypes/';
 import { AnimatedTextIconLink1, CodeIcon, EyeIcon } from '@components/';
 import { v4 as uuidv4 } from 'uuid';
 import { StoreContext } from '@utils/store';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const ProjectCard: React.FC<projectDataType> = ({
   demoLink,
@@ -39,10 +40,11 @@ export const ProjectCard: React.FC<projectDataType> = ({
           tabIndex={-1}
           className="w-full h-full"
         >
-          <img
+          <LazyLoadImage
             src={imgSrc}
             alt={imgAlt}
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         </a>
       </picture>

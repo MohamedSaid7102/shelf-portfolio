@@ -12,6 +12,7 @@ export const Avatar: React.FC<AvatarProps> = ({ imgAlt, imgPath }) => {
         src={imgPath}
         alt={imgAlt}
         className="w-full h-full object-cover text-sm"
+        loading="lazy"
       />
     </picture>
   );
