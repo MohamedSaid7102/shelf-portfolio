@@ -12,8 +12,9 @@ export const Filters: React.FC = () => {
       {/* Filters Heading */}
       <button
         className={`text-[10px] sm:text-[20px] border font-medium bg-[#333] backdrop-blur-md backdrop-filter:blur[10px] ${
-          isFiltering && 'hover:bg-[#000]'
-        } border-[#FEBC2E] border-1 rounded-full p-3 absolute top-0 left-[50%] translate-x-[-50%] translate-y-[-50%]`}
+          isFiltering &&
+          'hover:bg-[#FEBC2E] hover:text-black focus-visible:bg-[#FEBC2E] focus-visible:text-black'
+        } border-[#FEBC2E] border-1 rounded-full p-3 absolute top-0 left-[50%] translate-x-[-50%] translate-y-[-50%] transition-all ease-in-out duration-300`}
         onClick={removeAllFilterTags}
       >
         {isFiltering ? 'Clear Tag filters' : 'Filters'}

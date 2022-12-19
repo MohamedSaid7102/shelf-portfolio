@@ -28,10 +28,9 @@ function App() {
     else
       setProjects(
         projectsData.filter((project) =>
-          selectedTags.some((tag) => project.tagsList.includes(tag))
+          selectedTags.every((tag) => project.tagsList.includes(tag))
         )
       );
-    console.log(`Running`);
   }, [selectedTags]);
 
   return (

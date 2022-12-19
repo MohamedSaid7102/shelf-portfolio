@@ -98,16 +98,6 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
    */
   const removeFilterTag = (newFilter: filterTagType) => {
     setFilterSelectedState(newFilter, false);
-    // After removing check if there is remaining any other filters selected or not
-    /**
-     * Note: I did this with a counter to count how many selected tags left because excution of the logic that is responsible for figuring out is all tags are unselected or not will always run successfully with a render latency, because each render has it's own state and props and every thing, so I think this is the only way figuring out is all tags are unselected or not.
-     */
-    let selectedTags = 0;
-    state.filter.allTags.forEach((tag) => {
-      if (tag.selected) selectedTags++;
-    });
-    const isAllTagsNotSelected = selectedTags <= 1;
-    if (isAllTagsNotSelected) setIsFiltering(false);
   };
 
   const removeAllFilterTags = () => {
@@ -140,7 +130,10 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
     }));
   }, []);
 
-  useEffect(() => {}, [state.filter.selectedTags]);
+  // Depending on selectedTags update isFilteringState
+  useEffect(() => {
+    state.filter.selectedTags.length == 0 && setIsFiltering(false);
+  }, [state.filter.selectedTags]);
 
   return (
     <StoreContext.Provider value={state}>{children}</StoreContext.Provider>

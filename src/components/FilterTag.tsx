@@ -14,7 +14,7 @@ export const FilterTag: React.FC<FilterTag> = ({ tag }) => {
   return (
     <button
       aria-label={`Filter with ${tag.name}`}
-      className={`relative flex justify-between items-center gap-3 text-[12px] sm:text-[18px] cursor-pointer border border-1 hover:border-[#0be8f4] rounded-3xl py-1 px-5 ${
+      className={`relative flex justify-between items-center gap-3 text-[12px] sm:text-[18px] cursor-pointer border border-1 hover:border-[#0be8f4] rounded-3xl py-1 px-5 focus-visible:bg-[#0be8f442] ${
         tag.selected && 'bg-[#0be8f442] border-transparent'
       }`}
       onClick={() => {
