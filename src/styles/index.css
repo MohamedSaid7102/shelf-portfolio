@@ -76,30 +76,3 @@ body {
   color: #eee;
 }
 
-/* Other classes */
-
-/* 3. Card Tags */
-
-.card-tag {
-  cursor: pointer;
-  background-color: transparent;
-  color: #0be8f4;
-  padding: 0.3em 0.6em;
-  border: none;
-  border-radius: 30px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
-}
-
-.card-tag:focus-visible {
-  outline: 1px solid #0be8f4;
-  outline-offset: 3px;
-}
-.card-tag:hover,
-.card-tag:active,
-.card-tag:focus-visible {
-  background-color: #0be8f442;
-}
-

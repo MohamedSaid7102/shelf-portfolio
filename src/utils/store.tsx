@@ -1,7 +1,14 @@
 import React, { createContext, ReactNode, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { storeType, filterTagType } from '@myTypes/';
-import { projectsData } from '@utils/projectsData';
+import {
+  HTMLTag,
+  CSSTag,
+  JSTag,
+  GAMETag,
+  REACTJSTag,
+  projectsData,
+} from '@utils/projectsData';
 
 const Store: storeType = {
   filter: {
@@ -9,13 +16,7 @@ const Store: storeType = {
     setIsFiltering: (isFiltering: boolean) => {
       Store.filter.isFiltering = isFiltering;
     },
-    allTags: [
-      { name: 'html', selected: false, id: uuidv4() },
-      { name: 'css', selected: false, id: uuidv4() },
-      { name: 'js', selected: false, id: uuidv4() },
-      { name: 'react.js', selected: false, id: uuidv4() },
-      { name: 'game', selected: false, id: uuidv4() },
-    ],
+    allTags: [HTMLTag, CSSTag, JSTag, REACTJSTag, GAMETag],
     selectedTags: [],
     addNewActiveFilter: () => {},
     removeFilterTag: () => {},
@@ -139,9 +140,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
     }));
   }, []);
 
-  useEffect(() => {
-    console.log(state.filter.selectedTags);
-  }, [state.filter.selectedTags]);
+  useEffect(() => {}, [state.filter.selectedTags]);
 
   return (
     <StoreContext.Provider value={state}>{children}</StoreContext.Provider>

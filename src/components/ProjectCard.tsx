@@ -23,10 +23,8 @@ export const ProjectCard: React.FC<projectDataType> = ({
   ) => {
     e.preventDefault();
     if (tag.selected) {
-      console.log(tag.selected);
       removeFilterTag(tag);
     } else {
-      console.log(tag.selected);
       addNewActiveFilter(tag);
     }
   };
@@ -75,12 +73,17 @@ export const ProjectCard: React.FC<projectDataType> = ({
       </div>
       {/*<!-- 3. Tags --> */}
       <footer
-        className="border border-solid border-transparent border-t-[#febc2e] flex-start flex-row flex-wrap gapX1 p-5 mt-7"
+        className="border border-solid border-transparent border-t-[#febc2e] flex-start flex-row flex-wrap gap-2 p-5 mt-7"
         role="list"
       >
         {tagsList.map((tag) => (
           <button
-            className="card-tag font-extralight sm:font-medium text-[13px] sm:text-[17px] transition-all "
+            className={`cursor-pointer ${
+              tag.selected ? 'bg-[#0be8f442]' : 'bg-transparent'
+            } text-[#0be8f4] py-[0.3em] px-[0.6em] mr-2 border-none rounded-[30px] font-extralight sm:font-medium text-[13px] sm:text-[17px] transition-all
+            hover:bg-[#0be8f442]
+            focus-visible:bg-[#0be8f442]
+            outline-1 outline-[#0be8f4] outline-offset-4`}
             data-filter={tag.name.toLocaleLowerCase()}
             aria-label={`filter projects by ${tag.name}`}
             key={tag.id}
