@@ -8,10 +8,13 @@ import { TextIconBtn } from './buttons/TextIconBtn';
 import { TextIconLink } from './Links/TextIconLink';
 import { Divider } from './Divider';
 import { Filters } from './Filters';
-import { Filter } from './Filter';
+import { FilterTag } from './FilterTag';
+import { AnimatedTextIconLink1 } from './Links/AnimatedTextIconLink1';
 // icons
 import { DownloadFile as DownloadFileIcon } from './icons/DownloadFile';
 import { Close as CloseIcon } from './icons/Close';
+import { Eye as EyeIcon } from './icons/Eye';
+import { Code as CodeIcon } from './icons/Code';
 
 export {
   AuthorHeading,
@@ -24,8 +27,11 @@ export {
   TextIconLink,
   Divider,
   Filters,
-  Filter,
+  FilterTag,
+  AnimatedTextIconLink1,
   // icons
   DownloadFileIcon,
   CloseIcon,
+  EyeIcon,
+  CodeIcon,
 };

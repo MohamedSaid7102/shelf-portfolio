@@ -48,7 +48,7 @@ function App() {
           <header className="w-full text-center py-7 flex flex-col gap-10">
             <h1>Front-end Projects</h1>
             {/* Filtering section */}
-            <Filters userSelectedFilter={true} />
+            <Filters />
           </header>
           {/* Content */}
           <section className="flex flex-row flex-wrap gap-8 justify-center items-start">

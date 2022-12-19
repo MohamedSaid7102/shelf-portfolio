@@ -5,10 +5,13 @@ import App from './App';
 import '@styles/index.css';
 import '@styles/web3-styles.css';
 import '@styles/button-style.css';
+import { StoreProvider } from '@utils/store';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <StoreProvider>
+      <App />
+    </StoreProvider>
   </React.StrictMode>
 );
 

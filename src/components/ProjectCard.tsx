@@ -1,17 +1,10 @@
-import React from 'react';
+import React, { MouseEventHandler, useContext } from 'react';
+import { projectDataType, filterTagType } from '@myTypes/';
+import { AnimatedTextIconLink1, CodeIcon, EyeIcon } from '@components/';
+import { v4 as uuidv4 } from 'uuid';
+import { StoreContext } from '@utils/store';
 
-interface ProjectCardProps {
-  demoLink: string;
-  codeLink: string;
-  imgSrc: string;
-  imgAlt: string;
-  title: string;
-  desc: string;
-  tagsList: string[];
-  key: any;
-}
-
-export const ProjectCard: React.FC<ProjectCardProps> = ({
+export const ProjectCard: React.FC<projectDataType> = ({
   demoLink,
   codeLink,
   imgSrc,
@@ -20,6 +13,24 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   desc,
   tagsList,
 }) => {
+  const {
+    filter: { addNewActiveFilter, removeFilterTag },
+  } = useContext(StoreContext);
+
+  const filterWithTag = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    tag: filterTagType
+  ) => {
+    e.preventDefault();
+    if (tag.selected) {
+      console.log(tag.selected);
+      removeFilterTag(tag);
+    } else {
+      console.log(tag.selected);
+      addNewActiveFilter(tag);
+    }
+  };
+
   return (
     <article className="card-wrap sm:w-[350px] w-[300px] bg-[rgba(50,50,50,0.5)] rounded-2xl overflow-hidden flex flex-col flex-start gap-5">
       {/*<!-- 1. Image --> */}
@@ -49,110 +60,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         {/*<!-- Links --> */}
         <div className="content__links w-full flex flex-wrap justify-between sm:gap-6 sm:justify-start">
           {/*<!-- DEMO Link  --> */}
-          <div
-            role="link"
-            className="button button--rotate-over view"
-            aria-label="Demo"
-          >
-            <span aria-hidden={true}></span>
-            <span aria-hidden={true}></span>
-            <span aria-hidden={true}></span>
-            <span aria-hidden={true}></span>
-            <a
-              href={demoLink}
-              target="_blank"
-              className="flex p-5 justify-center items-center gap-6 text-[14px] sm:text-[23px]"
-              tabIndex={0}
-            >
-              Demo
-              <svg
-                className="link__icon"
-                aria-hidden={true}
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                fill="currentColor"
-                viewBox="0 0 256 256"
-              >
-                <rect width="256" height="256" fill="none"></rect>
-                <path
-                  d="M128,56C48,56,16,128,16,128s32,72,112,72,112-72,112-72S208,56,128,56Z"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="16"
-                ></path>
-                <circle
-                  cx="128"
-                  cy="128"
-                  r="40"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="16"
-                ></circle>
-              </svg>
-            </a>
-          </div>
+          <AnimatedTextIconLink1
+            text="Demo"
+            icon={<EyeIcon />}
+            link={demoLink}
+          />
           {/*<!-- Code Link --> */}
-          <div
-            role="link"
-            className="button button--rotate-over view"
-            aria-label="Code"
-          >
-            <span aria-hidden={true}></span>
-            <span aria-hidden={true}></span>
-            <span aria-hidden={true}></span>
-            <span aria-hidden={true}></span>
-            <a
-              href={codeLink}
-              target="_blank"
-              className="flex p-5 justify-center items-center gap-6 text-[14px] sm:text-[23px]"
-              tabIndex={0}
-            >
-              Code
-              <svg
-                className="link__icon"
-                aria-hidden={true}
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                fill="currentColor"
-                viewBox="0 0 256 256"
-              >
-                <rect width="256" height="256" fill="none"></rect>
-                <polyline
-                  points="64 88 16 128 64 168"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="16"
-                ></polyline>
-                <polyline
-                  points="192 88 240 128 192 168"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="16"
-                ></polyline>
-                <line
-                  x1="160"
-                  y1="40"
-                  x2="96"
-                  y2="216"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="16"
-                ></line>
-              </svg>
-            </a>
-          </div>
+          <AnimatedTextIconLink1
+            text="Code"
+            icon={<CodeIcon />}
+            link={codeLink}
+          />
         </div>
       </div>
       {/*<!-- 3. Tags --> */}
@@ -160,15 +78,18 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         className="border border-solid border-transparent border-t-[#febc2e] flex-start flex-row flex-wrap gapX1 p-5 mt-7"
         role="list"
       >
-        {tagsList.map((tag, index) => (
+        {tagsList.map((tag) => (
           <button
             className="card-tag font-extralight sm:font-medium text-[13px] sm:text-[17px] transition-all "
-            data-filter={tag.toLocaleLowerCase()}
-            aria-label={`filter projects by ${tag}`}
-            key={index}
+            data-filter={tag.name.toLocaleLowerCase()}
+            aria-label={`filter projects by ${tag.name}`}
+            key={tag.id}
+            onClick={(e) => filterWithTag(e, tag)}
           >
-            <span aria-hidden={true}>#</span>
-            {tag.toLocaleUpperCase()}
+            <span aria-hidden={true} className="opacity-75">
+              #{' '}
+            </span>
+            {tag.name.toLocaleUpperCase()}
           </button>
         ))}
       </footer>

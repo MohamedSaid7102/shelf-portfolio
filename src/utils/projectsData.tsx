@@ -5,8 +5,17 @@ import project4Image from '@assets/images/project-4.png';
 import project5Image from '@assets/images/project-5.png';
 import project6Image from '@assets/images/project-6.jpg';
 import project7Image from '@assets/images/project-7.png';
+import { projectDataType } from '@myTypes/';
+import { v4 as uuidv4 } from 'uuid';
 
-export const projectsData = [
+// Tags, I think it's worong to use it like this...↘️
+// const htmlTag: projectTagType = { name: 'html', id: uuidv4() };
+// const cssTag: projectTagType = { name: 'css', id: uuidv4() };
+// const jsTag: projectTagType = { name: 'js', id: uuidv4() };
+// const GAMETag: projectTagType = { name: 'game', id: uuidv4() };
+
+// Projects Data
+export const projectsData: projectDataType[] = [
   {
     title: 'Rotation Text',
     desc: 'Rotating Text around an image',
@@ -14,7 +23,11 @@ export const projectsData = [
     imgAlt: 'mohamed shelf standing with iron man suit',
     demoLink: 'https://codepen.io/mohamedsaid7102/full/abKrevV',
     codeLink: 'https://codepen.io/mohamedsaid7102/pen/abKrevV',
-    tagsList: ['HTML', 'CSS', 'JS'],
+    tagsList: [
+      { name: 'html', id: uuidv4(), selected: false },
+      { name: 'css', id: uuidv4(), selected: false },
+      { name: 'js', id: uuidv4(), selected: false },
+    ],
   },
   {
     title: 'Browser Welcomming Page',
@@ -24,7 +37,11 @@ export const projectsData = [
     demoLink: 'https://website-browser-welcomming-page.vercel.app/',
     codeLink:
       'https://github.com/MohamedSaid7102/website--browser-welcomming-page',
-    tagsList: ['HTML', 'CSS', 'JS'],
+    tagsList: [
+      { name: 'html', id: uuidv4(), selected: false },
+      { name: 'css', id: uuidv4(), selected: false },
+      { name: 'js', id: uuidv4(), selected: false },
+    ],
   },
   {
     title: 'Fancy Cursor Hover',
@@ -33,7 +50,11 @@ export const projectsData = [
     imgAlt: 'photo of a website',
     demoLink: 'https://codepen.io/mohamedsaid7102/full/gOKNOpo',
     codeLink: 'https://codepen.io/mohamedsaid7102/pen/gOKNOpo',
-    tagsList: ['HTML', 'CSS', 'JS'],
+    tagsList: [
+      { name: 'html', id: uuidv4(), selected: false },
+      { name: 'css', id: uuidv4(), selected: false },
+      { name: 'js', id: uuidv4(), selected: false },
+    ],
   },
   {
     title: 'Before&After',
@@ -42,7 +63,11 @@ export const projectsData = [
     imgAlt: 'photo of a before & after image',
     demoLink: 'https://codepen.io/mohamedsaid7102/full/abGVLpO',
     codeLink: 'https://codepen.io/mohamedsaid7102/pen/abGVLpO',
-    tagsList: ['HTML', 'CSS', 'JS'],
+    tagsList: [
+      { name: 'html', id: uuidv4(), selected: false },
+      { name: 'css', id: uuidv4(), selected: false },
+      { name: 'js', id: uuidv4(), selected: false },
+    ],
   },
   {
     title: `Google's Theme Switcher`,
@@ -51,7 +76,11 @@ export const projectsData = [
     imgAlt: 'photo of a theme switch',
     demoLink: 'https://codepen.io/mohamedsaid7102/full/jOxxXZO',
     codeLink: 'https://codepen.io/mohamedsaid7102/pen/jOxxXZO',
-    tagsList: ['HTML', 'CSS', 'JS'],
+    tagsList: [
+      { name: 'html', id: uuidv4(), selected: false },
+      { name: 'css', id: uuidv4(), selected: false },
+      { name: 'js', id: uuidv4(), selected: false },
+    ],
   },
   {
     title: 'Mind Game',
@@ -60,7 +89,12 @@ export const projectsData = [
     imgAlt: 'photo of a mind game cards',
     demoLink: 'https://codepen.io/mohamedsaid7102/full/xxPJqOz',
     codeLink: 'https://codepen.io/mohamedsaid7102/pen/xxPJqOz',
-    tagsList: ['HTML', 'CSS', 'JS', 'game'],
+    tagsList: [
+      { name: 'html', id: uuidv4(), selected: false },
+      { name: 'css', id: uuidv4(), selected: false },
+      { name: 'js', id: uuidv4(), selected: false },
+      { name: 'game', id: uuidv4(), selected: false },
+    ],
   },
   {
     title: 'Old Web Resume',
@@ -69,6 +103,9 @@ export const projectsData = [
     imgAlt: 'photo of a resume',
     demoLink: 'https://website-old-resume.vercel.app/',
     codeLink: 'https://github.com/MohamedSaid7102/website--old--resume',
-    tagsList: ['HTML', 'CSS'],
+    tagsList: [
+      { name: 'html', id: uuidv4(), selected: false },
+      { name: 'css', id: uuidv4(), selected: false },
+    ],
   },
 ];
