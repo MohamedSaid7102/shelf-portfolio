@@ -2,8 +2,9 @@ import {
   Avatar,
   AuthorHeading,
   ODCLink,
+  SectionHeader,
+  ProjectsList,
   ContactLinks,
-  ProjectCard,
   TextIconLink,
   Divider,
   Filters,
@@ -60,34 +61,12 @@ function App() {
             ariaLabel="Download Shelf CV"
           />
         </aside>
-        {/* Content */}
+        {/* Page main Content */}
         <main className="w-full bg-[rgba(180,180,180,0.3)] backdrop:blur-md backdrop-blur-md rounded-xl p-5 flex flex-col gap-12 items-center">
-          {/* Header */}
-          <header className="w-full text-center py-7 flex flex-col gap-10">
-            <h1>Front-end Projects</h1>
-            {/* Filtering section */}
-            <Filters />
-          </header>
-          {/* Content */}
-          <section className="flex flex-row flex-wrap gap-8 justify-center items-start">
-            {projects.map(
-              (
-                { demoLink, codeLink, imgSrc, imgAlt, title, desc, tagsList },
-                index
-              ) => (
-                <ProjectCard
-                  demoLink={demoLink}
-                  codeLink={codeLink}
-                  desc={desc}
-                  imgAlt={imgAlt}
-                  imgSrc={imgSrc}
-                  tagsList={tagsList}
-                  title={title}
-                  key={index}
-                />
-              )
-            )}
-          </section>
+          {/* Section Header */}
+          <SectionHeader title="My Projects" otherContent={<Filters />} />
+          {/* Section Content */}
+          <ProjectsList projects={projects} />
         </main>
       </div>
     </div>
