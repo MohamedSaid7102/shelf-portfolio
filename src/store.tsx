@@ -1,28 +1,6 @@
 import React, { createContext, ReactNode, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { storeType, filterTagType } from '@myTypes/';
-import {
-  HTMLTag,
-  CSSTag,
-  JSTag,
-  GAMETag,
-  REACTJSTag,
-  projectsData,
-} from '@utils/projectsData';
-
-const Store: storeType = {
-  projectsData,
-
-  filter: {
-    isFiltering: false,
-    allTags: [HTMLTag, CSSTag, JSTag, REACTJSTag, GAMETag],
-    selectedTags: [],
-    setIsFiltering: () => {},
-    addNewActiveFilter: () => {},
-    removeFilterTag: () => {},
-    removeAllFilterTags: () => {},
-  },
-};
+import { Store } from '@data/store';
 
 export const StoreContext = createContext(Store);
 
@@ -99,6 +77,9 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
     setFilterSelectedState(newFilter, false);
   };
 
+  /**
+   * Removes all selected filter tags
+   */
   const removeAllFilterTags = () => {
     setState((prevState) => ({
       ...prevState,
@@ -110,7 +91,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
             return filter;
           }),
         ],
-        selectedTags: prevState.filter.selectedTags.filter((item) => false),
+        selectedTags: prevState.filter.selectedTags.filter(() => false),
       },
     }));
   };

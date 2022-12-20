@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SocialLink } from '@components/';
-import { socialLinksData } from '@utils/socialLinksData';
+import { StoreContext } from '@base/src/store';
 
 export const ContactLinks: React.FC = () => {
+  const {
+    user: {
+      links: { socialLinksData },
+    },
+  } = useContext(StoreContext);
+
   return (
     <div className="flex flex-wrap gap-4 justify-center items-center">
       {socialLinksData.map((link) => (

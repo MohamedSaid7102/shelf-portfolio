@@ -15,14 +15,37 @@ export type filterTagType = {
 };
 
 export type storeType = {
+  user: {
+    name: string;
+    jobTitle: string;
+    img: {
+      src: string;
+      alt: string;
+    };
+    links: {
+      socialLinksData: socialLinksDataType;
+      jobLink: React.ReactNode;
+      resume: {
+        url: string;
+        text: string;
+        ariaLabel: string;
+      };
+    };
+  };
+  projectsData: projectDataType[];
   filter: {
     isFiltering: boolean;
-    setIsFiltering: (isFiltering: boolean) => void;
     allTags: filterTagType[];
     selectedTags: filterTagType[];
+    setIsFiltering: (isFiltering: boolean) => void;
     addNewActiveFilter: (selectedFilter: filterTagType) => void;
     removeFilterTag: (selectedFilter: filterTagType) => void;
     removeAllFilterTags: () => void;
   };
-  projectsData: projectDataType[];
 };
+
+export type socialLinksDataType = {
+  title: string;
+  url: string;
+  logo: JSX.Element;
+}[];

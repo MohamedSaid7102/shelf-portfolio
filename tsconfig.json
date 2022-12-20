@@ -26,7 +26,9 @@
       "@router/*": ["./src/router/*", "./src/router"],
       "@styles/*": ["./src/styles/*", "./src/styles"],
       "@utils/*": ["./src/utils/*", "./src/utils"],
-      "@myTypes/*": ["./types/*", "./types"]
+      "@data/*": ["./src/data/*", "./src/data"],
+      "@myTypes/*": ["./types/*", "./types"],
+      "@base/*": ["./*", "./"]
     }
   },
   "include": ["src"],

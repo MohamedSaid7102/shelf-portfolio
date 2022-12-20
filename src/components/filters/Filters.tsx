@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FilterTag } from '@components/';
-import { StoreContext } from '@utils/store';
+import { StoreContext } from '@base/src/store';
 
 export const Filters: React.FC = () => {
   const {

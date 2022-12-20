@@ -2,7 +2,7 @@ import React, { MouseEventHandler, useContext } from 'react';
 import { projectDataType, filterTagType } from '@myTypes/';
 import { AnimatedTextIconLink1, CodeIcon, EyeIcon } from '@components/';
 import { v4 as uuidv4 } from 'uuid';
-import { StoreContext } from '@utils/store';
+import { StoreContext } from '@base/src/store';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const ProjectCard: React.FC<projectDataType> = ({
@@ -15,8 +15,15 @@ export const ProjectCard: React.FC<projectDataType> = ({
   tagsList,
 }) => {
   const {
-    filter: { addNewActiveFilter, removeFilterTag },
+    filter: { addNewActiveFilter, removeFilterTag, selectedTags, allTags },
   } = useContext(StoreContext);
+
+  /**
+   *
+   * @param tag
+   * @returns weather tag is selected or not <Boolean>
+   */
+  const isTagSelected = (tag: filterTagType) => selectedTags.includes(tag);
 
   const filterWithTag = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -78,25 +85,27 @@ export const ProjectCard: React.FC<projectDataType> = ({
         className="border border-solid border-transparent border-t-[#febc2e] flex-start flex-row flex-wrap gap-2 p-5 mt-7"
         role="list"
       >
-        {tagsList.map((tag) => (
-          <button
-            className={`cursor-pointer ${
-              tag.selected ? 'bg-[#0be8f442]' : 'bg-transparent'
-            } text-[#0be8f4] py-[0.3em] px-[0.6em] mr-2 border-none rounded-[30px] font-extralight sm:font-medium text-[13px] sm:text-[17px] transition-all
+        {tagsList
+          .filter((tag) => allTags.includes(tag))
+          .map((tag) => (
+            <button
+              className={`cursor-pointer ${
+                isTagSelected(tag) ? 'bg-[#0be8f442]' : 'bg-transparent'
+              } text-[#0be8f4] py-[0.3em] px-[0.6em] mr-2 border-none rounded-[30px] font-extralight sm:font-medium text-[13px] sm:text-[17px] transition-all
             hover:bg-[#0be8f442]
             focus-visible:bg-[#0be8f442]
             outline-1 outline-[#0be8f4] outline-offset-4`}
-            data-filter={tag.name.toLocaleLowerCase()}
-            aria-label={`filter projects by ${tag.name}`}
-            key={tag.id}
-            onClick={(e) => filterWithTag(e, tag)}
-          >
-            <span aria-hidden={true} className="opacity-75">
-              #{' '}
-            </span>
-            {tag.name.toLocaleUpperCase()}
-          </button>
-        ))}
+              data-filter={tag.name.toLocaleLowerCase()}
+              aria-label={`filter projects by ${tag.name}`}
+              key={tag.id}
+              onClick={(e) => filterWithTag(e, tag)}
+            >
+              <span aria-hidden={true} className="opacity-75">
+                #{' '}
+              </span>
+              {tag.name.toLocaleUpperCase()}
+            </button>
+          ))}
       </footer>
     </article>
   );

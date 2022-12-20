@@ -1,34 +1,42 @@
 import {
   Avatar,
   AuthorHeading,
-  ODCLink,
   SectionHeader,
   ProjectsList,
   ContactLinks,
   TextIconLink,
   Divider,
   Filters,
+  DownloadFileIcon,
 } from '@components/';
-import myPic from '@assets/images/my-pic.jpg';
-import { projectsData } from '@utils/projectsData';
-
-import { DownloadFileIcon } from '@components/';
-import { ResumeURL } from './config';
 import { useContext, useEffect, useState } from 'react';
-import { StoreContext } from '@utils/store';
+import { StoreContext } from '@base/src/store';
 
 function App() {
-  const [projects, setProjects] = useState(projectsData);
-
   const {
+    user: {
+      name: userName,
+      jobTitle: userJobTitle,
+      img: { src: userImgSrc, alt: userImgAlt },
+      links: {
+        jobLink: userJobLink,
+        resume: {
+          text: userResumeText,
+          url: userResumeURL,
+          ariaLabel: userResumeAriaLabel,
+        },
+      },
+    },
     filter: { selectedTags, setIsFiltering },
+    projectsData,
   } = useContext(StoreContext);
+
+  const [projects, setProjects] = useState(projectsData);
 
   useEffect(() => {
     if (selectedTags.length == 0) {
       setProjects(projectsData);
       setIsFiltering(false);
-      console.log(selectedTags.length);
     } else {
       setProjects(
         projectsData.filter((project) =>
@@ -48,22 +56,19 @@ function App() {
         {/* Left Side bar */}
         <aside className="bg-[rgba(180,180,180,0.3)] backdrop:blur-sm backdrop-blur-sm rounded-xl p-4 pt-12 text-center md:px-[5rem] flex flex-col justify-center items-center gap-10 max-w-2xl h-max xl:sticky xl:top-6 xl:w-full">
           <AuthorHeading
-            authName="Mohamed S.Shelf"
-            authJobTitle="Front-end Engineer"
-            authJobLink={<ODCLink />}
+            authName={userName}
+            authJobTitle={userJobTitle}
+            authJobLink={userJobLink}
           />
-          <Avatar
-            imgAlt="Mohamed Shelf sitting on a chair on ODC"
-            imgPath={myPic}
-          />
+          <Avatar imgPath={userImgSrc} imgAlt={userImgAlt} />
           <ContactLinks />
           <Divider />
           {/* Download CV link */}
           <TextIconLink
+            text={userResumeText}
             icon={<DownloadFileIcon className="w-[40px] h-[40px]" />}
-            href={ResumeURL}
-            text="My Resume"
-            ariaLabel="Download Shelf CV"
+            href={userResumeURL}
+            ariaLabel={userResumeAriaLabel}
           />
         </aside>
         {/* Page main Content */}

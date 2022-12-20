@@ -1,4 +1,6 @@
-export const socialLinksData = [
+import { socialLinksDataType } from '@myTypes/index';
+
+export const socialLinksData: socialLinksDataType = [
   {
     title: 'Linkedin',
     url: 'https://www.linkedin.com/in/mohamed-shelf/',
