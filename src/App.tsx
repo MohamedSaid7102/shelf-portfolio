@@ -21,17 +21,22 @@ function App() {
   const [projects, setProjects] = useState(projectsData);
 
   const {
-    filter: { selectedTags },
+    filter: { selectedTags, setIsFiltering },
   } = useContext(StoreContext);
 
   useEffect(() => {
-    if (selectedTags.length == 0) setProjects(projectsData);
-    else
+    if (selectedTags.length == 0) {
+      setProjects(projectsData);
+      setIsFiltering(false);
+      console.log(selectedTags.length);
+    } else {
       setProjects(
         projectsData.filter((project) =>
           selectedTags.every((tag) => project.tagsList.includes(tag))
         )
       );
+      setIsFiltering(true);
+    }
   }, [selectedTags]);
 
   return (

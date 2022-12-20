@@ -11,21 +11,21 @@ import {
 } from '@utils/projectsData';
 
 const Store: storeType = {
+  projectsData,
+
   filter: {
     isFiltering: false,
-    setIsFiltering: (isFiltering: boolean) => {
-      Store.filter.isFiltering = isFiltering;
-    },
     allTags: [HTMLTag, CSSTag, JSTag, REACTJSTag, GAMETag],
     selectedTags: [],
+    setIsFiltering: () => {},
     addNewActiveFilter: () => {},
     removeFilterTag: () => {},
     removeAllFilterTags: () => {},
   },
-  projectsData,
 };
 
 export const StoreContext = createContext(Store);
+
 // Render the app state context provider
 export const StoreProvider: React.FC<{ children: ReactNode }> = ({
   children,
@@ -89,7 +89,6 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
    */
   const addNewActiveFilter = (newFilter: filterTagType) => {
     setFilterSelectedState(newFilter, true);
-    setIsFiltering(true);
   };
 
   /**
@@ -114,7 +113,6 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
         selectedTags: prevState.filter.selectedTags.filter((item) => false),
       },
     }));
-    setIsFiltering(false);
   };
 
   // only run once
@@ -123,17 +121,13 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
       ...state,
       filter: {
         ...state.filter,
+        setIsFiltering,
         addNewActiveFilter,
         removeFilterTag,
         removeAllFilterTags,
       },
     }));
   }, []);
-
-  // Depending on selectedTags update isFilteringState
-  useEffect(() => {
-    state.filter.selectedTags.length == 0 && setIsFiltering(false);
-  }, [state.filter.selectedTags]);
 
   return (
     <StoreContext.Provider value={state}>{children}</StoreContext.Provider>
