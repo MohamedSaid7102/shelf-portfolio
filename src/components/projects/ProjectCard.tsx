@@ -1,9 +1,11 @@
-import React, { MouseEventHandler, useContext } from 'react';
+import React, { MouseEventHandler, useContext, useState } from 'react';
 import { projectDataType, filterTagType } from '@myTypes/';
 import { AnimatedTextIconLink1, CodeIcon, EyeIcon } from '@components/';
 import { v4 as uuidv4 } from 'uuid';
 import { StoreContext } from '@base/src/store';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { lazyLoadingImagesData } from '@data/data';
+import { Blurhash } from 'react-blurhash';
 
 export const ProjectCard: React.FC<projectDataType> = ({
   demoLink,
@@ -18,6 +20,19 @@ export const ProjectCard: React.FC<projectDataType> = ({
     filter: { addNewActiveFilter, removeFilterTag, selectedTags, allTags },
   } = useContext(StoreContext);
 
+  //@ts-ignore: Get the corresponding hash from lazyLoadingImagesData to show it
+  const correspondingHash = lazyLoadingImagesData[imgSrc].blurhash;
+
+  const [isLoaded, setLoaded] = useState(false);
+  const [isLoadStarted, setLoadStarted] = useState(false);
+
+  const handleLoad = () => {
+    setLoaded(true);
+  };
+
+  const handleLoadStarted = () => {
+    setLoadStarted(true);
+  };
   /**
    *
    * @param tag
@@ -38,20 +53,33 @@ export const ProjectCard: React.FC<projectDataType> = ({
   };
 
   return (
-    <article className="card-wrap sm:w-[350px] w-[300px] bg-[rgba(50,50,50,0.5)] rounded-2xl overflow-hidden flex flex-col flex-start gap-5">
+    <article className="card-wrap w-full sm:w-[350px] bg-[rgba(50,50,50,0.5)] rounded-2xl overflow-hidden flex flex-col flex-start gap-5">
       {/*<!-- 1. Image --> */}
-      <picture className="flex h-[180px] overflow-hidden justify-center items-center bg-gradient-to-r from-cyan-500 to-blue-500">
+      <picture className="relative flex h-[180px] overflow-hidden justify-center items-center bg-gradient-to-r from-cyan-500 to-blue-500">
         <a
           href={demoLink}
           aria-label={imgAlt}
           tabIndex={-1}
           className="w-full h-full"
         >
+          {!isLoaded && isLoadStarted && (
+            <Blurhash
+              hash={correspondingHash}
+              width={300}
+              height={180}
+              resolutionX={32}
+              resolutionY={32}
+              punch={1}
+              className="z-20 absolute inset-0 w-full h-full"
+            />
+          )}
           <LazyLoadImage
             src={imgSrc}
             alt={imgAlt}
-            className="w-full h-full object-cover"
+            className="z-10 w-full h-full object-cover"
             loading="lazy"
+            onLoad={handleLoad}
+            beforeLoad={handleLoadStarted}
           />
         </a>
       </picture>
@@ -65,7 +93,7 @@ export const ProjectCard: React.FC<projectDataType> = ({
         </a>
         <p className="font-light text-[13px] sm:text-[20px]">{desc}</p>
         {/*<!-- Links --> */}
-        <div className="content__links w-full flex flex-wrap justify-between sm:gap-6 sm:justify-start">
+        <div className="content__links w-full flex flex-wrap justify-between gap-3 sm:gap-6 sm:justify-start">
           {/*<!-- DEMO Link  --> */}
           <AnimatedTextIconLink1
             text="Demo"

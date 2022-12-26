@@ -11,6 +11,7 @@ import {
 } from '@components/';
 import { useContext, useEffect, useState } from 'react';
 import { StoreContext } from '@base/src/store';
+import { Blurhash } from 'react-blurhash';
 
 function App() {
   const {
@@ -49,7 +50,7 @@ function App() {
 
   return (
     <div
-      className="min-w-screen min-h-screen flex justify-center items-start p-8
+      className="relative min-w-screen min-h-screen flex justify-center items-start p-8
     md:justify-start xl:ml-[14rem] max-w-[2000px]"
     >
       <div className="w-full flex flex-col xl:flex-row xl:items-start items-center gap-5">
@@ -60,7 +61,7 @@ function App() {
             authJobTitle={userJobTitle}
             authJobLink={userJobLink}
           />
-          <Avatar imgPath={userImgSrc} imgAlt={userImgAlt} />
+          <Avatar imgSrc={userImgSrc} imgAlt={userImgAlt} />
           <ContactLinks />
           <Divider />
           {/* Download CV link */}
