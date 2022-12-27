@@ -11,7 +11,7 @@ import { StoreContext } from '@base/src/store';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { lazyLoadingImagesData } from '@data/data';
 import { Blurhash } from 'react-blurhash';
-import 'blurhash';
+import { getProductionNameOfPath } from '@utils/functions';
 
 export const ProjectCard: React.FC<projectDataType> = ({
   demoLink,
@@ -25,9 +25,6 @@ export const ProjectCard: React.FC<projectDataType> = ({
   const {
     filter: { addNewActiveFilter, removeFilterTag, selectedTags, allTags },
   } = useContext(StoreContext);
-
-  //@ts-ignore: Get the corresponding hash from lazyLoadingImagesData to show it
-  const correspondingHash = lazyLoadingImagesData[imgSrc].blurhash;
 
   const [isLoaded, setLoaded] = useState(false);
   const [isLoadStarted, setLoadStarted] = useState(false);
@@ -71,6 +68,19 @@ export const ProjectCard: React.FC<projectDataType> = ({
       height: Number(cardRef.current?.getBoundingClientRect().height),
     });
   }, [cardRef.current?.getBoundingClientRect().width]);
+
+  /** imgSrc in production might be like e.g: /assets/project-1-e5c0642e.png,
+   * below logic is to remove the produced version of the img name, to be able to correctly compare ti to images in lazyLoadingImagesData
+   */
+  let inProductionMode = imgSrc.includes('-');
+
+  // imgSrc = inProductionMode ? getProductionNameOfPath(imgSrc) : imgSrc;
+
+  let correspondingHash = inProductionMode
+    ? /*@ts-ignore: Get the corresponding hash from lazyLoadingImagesData to show it*/
+      lazyLoadingImagesData[getProductionNameOfPath(imgSrc)].blurhash
+    : /*@ts-ignore: Get the corresponding hash from lazyLoadingImagesData to show it*/
+      lazyLoadingImagesData[imgSrc].blurhash;
 
   return (
     <article

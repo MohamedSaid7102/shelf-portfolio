@@ -4,7 +4,6 @@ import { readFileSync, writeFileSync, promises as fsPromises } from 'fs';
 import { encode } from 'blurhash';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
-import 'blurhash';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

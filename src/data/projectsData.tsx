@@ -1,10 +1,10 @@
-import project1Image from '@assets/images/project-1.png';
-import project2Image from '@assets/images/project-2.png';
-import project3Image from '@assets/images/project-3.png';
-import project4Image from '@assets/images/project-4.png';
-import project5Image from '@assets/images/project-5.png';
-import project6Image from '@assets/images/project-6.jpg';
-import project7Image from '@assets/images/project-7.png';
+import project1Image from '@assets/images/project1.png';
+import project2Image from '@assets/images/project2.png';
+import project3Image from '@assets/images/project3.png';
+import project4Image from '@assets/images/project4.png';
+import project5Image from '@assets/images/project5.png';
+import project6Image from '@assets/images/project6.jpg';
+import project7Image from '@assets/images/project7.png';
 import { filterTagType, projectDataType } from '@myTypes/';
 import { v4 as uuidv4 } from 'uuid';
 

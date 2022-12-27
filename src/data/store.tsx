@@ -7,7 +7,7 @@ import {
   REACTJSTag,
   projectsData,
 } from '@data/projectsData';
-import myPic from '@assets/images/my-pic.jpg';
+import myPic from '@assets/images/myPic.jpg';
 import { socialLinksData } from '@data/socialLinksData';
 
 export const Store: storeType = {
