@@ -1,7 +1,12 @@
-import React, { MouseEventHandler, useContext, useState } from 'react';
+import React, {
+  MouseEventHandler,
+  useContext,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import { projectDataType, filterTagType } from '@myTypes/';
 import { AnimatedTextIconLink1, CodeIcon, EyeIcon } from '@components/';
-import { v4 as uuidv4 } from 'uuid';
 import { StoreContext } from '@base/src/store';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { lazyLoadingImagesData } from '@data/data';
@@ -52,10 +57,27 @@ export const ProjectCard: React.FC<projectDataType> = ({
     }
   };
 
+  // To get card Dimentions and set blurImgHash with that width
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [cardDim, setCardDim] = useState<{ width: number; height: number }>({
+    width: 350,
+    height: 350,
+  });
+
+  useLayoutEffect(() => {
+    setCardDim({
+      width: Number(cardRef.current?.getBoundingClientRect().width),
+      height: Number(cardRef.current?.getBoundingClientRect().height),
+    });
+  }, [cardRef.current?.getBoundingClientRect().width]);
+
   return (
-    <article className="card-wrap w-full sm:w-[350px] bg-[rgba(50,50,50,0.5)] rounded-2xl overflow-hidden flex flex-col flex-start gap-5">
+    <article
+      className="card-wrap w-full sm:w-[350px] bg-[rgba(50,50,50,0.5)] rounded-2xl overflow-hidden flex flex-col flex-start gap-5"
+      ref={cardRef}
+    >
       {/*<!-- 1. Image --> */}
-      <picture className="relative flex h-[180px] overflow-hidden justify-center items-center bg-gradient-to-r from-cyan-500 to-blue-500">
+      <picture className="relative flex h-[180px] overflow-hidden justify-center items-center">
         <a
           href={demoLink}
           aria-label={imgAlt}
@@ -65,8 +87,8 @@ export const ProjectCard: React.FC<projectDataType> = ({
           {!isLoaded && isLoadStarted && (
             <Blurhash
               hash={correspondingHash}
-              width={300}
-              height={180}
+              width={cardDim.width}
+              height={cardDim.height}
               resolutionX={32}
               resolutionY={32}
               punch={1}
