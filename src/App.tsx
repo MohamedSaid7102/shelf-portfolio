@@ -12,6 +12,7 @@ import {
 import { useContext, useEffect, useState } from 'react';
 import { StoreContext } from '@base/src/store';
 import { Blurhash } from 'react-blurhash';
+import 'blurhash';
 
 function App() {
   const {

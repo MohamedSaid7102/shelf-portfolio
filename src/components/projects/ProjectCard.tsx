@@ -11,6 +11,7 @@ import { StoreContext } from '@base/src/store';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { lazyLoadingImagesData } from '@data/data';
 import { Blurhash } from 'react-blurhash';
+import 'blurhash';
 
 export const ProjectCard: React.FC<projectDataType> = ({
   demoLink,

@@ -2,6 +2,7 @@ import { lazyLoadingImagesData } from '@data/data';
 import React, { useState } from 'react';
 import { Blurhash } from 'react-blurhash';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'blurhash';
 
 interface AvatarProps {
   imgSrc: string;
