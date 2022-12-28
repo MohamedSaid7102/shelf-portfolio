@@ -11,10 +11,9 @@ import {
 } from '@components/';
 import { useContext, useEffect, useState } from 'react';
 import { StoreContext } from '@base/src/store';
-// import { Blurhash } from 'react-blurhash';
-// import 'blurhash';
 
 function App() {
+  // Get data from local store using useContext
   const {
     user: {
       name: userName,
@@ -35,6 +34,7 @@ function App() {
 
   const [projects, setProjects] = useState(projectsData);
 
+  // Filter projects everytime selectedTags change
   useEffect(() => {
     if (selectedTags.length == 0) {
       setProjects(projectsData);

@@ -8,7 +8,6 @@ import React, {
 import { projectDataType, filterTagType } from '@myTypes/';
 import { AnimatedTextIconLink1, CodeIcon, EyeIcon } from '@components/';
 import { StoreContext } from '@base/src/store';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { lazyLoadingImagesData } from '@data/data';
 import { Blurhash } from 'react-blurhash';
 import { getProductionNameOfPath } from '@utils/functions';
@@ -27,15 +26,12 @@ export const ProjectCard: React.FC<projectDataType> = ({
   } = useContext(StoreContext);
 
   const [isLoaded, setLoaded] = useState(false);
-  const [isLoadStarted, setLoadStarted] = useState(false);
 
   const handleLoad = () => {
     setLoaded(true);
+    alert('Project loaded: ');
   };
 
-  const handleLoadStarted = () => {
-    setLoadStarted(true);
-  };
   /**
    *
    * @param tag
@@ -95,7 +91,7 @@ export const ProjectCard: React.FC<projectDataType> = ({
           tabIndex={-1}
           className="w-full h-full"
         >
-          {!isLoaded && isLoadStarted && (
+          {!isLoaded && (
             <Blurhash
               hash={correspondingHash}
               width={cardDim.width}
@@ -106,13 +102,12 @@ export const ProjectCard: React.FC<projectDataType> = ({
               className="z-20 absolute inset-0 w-full h-full"
             />
           )}
-          <LazyLoadImage
+          <img
             src={imgSrc}
             alt={imgAlt}
+            onLoad={handleLoad}
             className="z-10 w-full h-full object-cover"
             loading="lazy"
-            onLoad={handleLoad}
-            beforeLoad={handleLoadStarted}
           />
         </a>
       </picture>

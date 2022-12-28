@@ -2,7 +2,6 @@ import { lazyLoadingImagesData } from '@data/data';
 import { getProductionNameOfPath } from '@utils/functions';
 import React, { useState } from 'react';
 import { Blurhash } from 'react-blurhash';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 interface AvatarProps {
   imgSrc: string;
@@ -11,7 +10,7 @@ interface AvatarProps {
 
 export const Avatar: React.FC<AvatarProps> = ({ imgAlt, imgSrc }) => {
   /** imgSrc in production might be like e.g: /assets/project-1-e5c0642e.png,
-   * below logic is to remove the produced version of the img name, to be able to correctly compare ti to images in lazyLoadingImagesData
+   * below logic is to remove the production version of the img name, to be able to correctly compare it to images in lazyLoadingImagesData
    */
   let inProductionMode = imgSrc.includes('-');
 
@@ -24,18 +23,15 @@ export const Avatar: React.FC<AvatarProps> = ({ imgAlt, imgSrc }) => {
       lazyLoadingImagesData[imgSrc].blurhash;
 
   const [isLoaded, setLoaded] = useState(false);
-  const [isLoadStarted, setLoadStarted] = useState(false);
 
   const handleLoad = () => {
     setLoaded(true);
+    alert('Avatar loaded: ');
   };
 
-  const handleLoadStarted = () => {
-    setLoadStarted(true);
-  };
   return (
     <picture className="relative block w-[200px] h-[200px] overflow-hidden rounded-full shadow-xl shadow-cyan-500/50">
-      {!isLoaded && isLoadStarted && (
+      {!isLoaded && (
         <Blurhash
           hash={correspondingHash}
           width={200}
@@ -46,13 +42,12 @@ export const Avatar: React.FC<AvatarProps> = ({ imgAlt, imgSrc }) => {
           className="z-20 absolute inset-0 w-full h-full"
         />
       )}
-      <LazyLoadImage
+      <img
         src={imgSrc}
         alt={imgAlt}
+        onLoad={handleLoad}
         className="z-10 w-full h-full object-cover text-sm"
         loading="lazy"
-        onLoad={handleLoad}
-        beforeLoad={handleLoadStarted}
       />
     </picture>
   );
