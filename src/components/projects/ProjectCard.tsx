@@ -1,15 +1,13 @@
-import React, {
-  MouseEventHandler,
-  useContext,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useContext, useLayoutEffect, useRef, useState } from 'react';
 import { projectDataType, filterTagType } from '@myTypes/';
-import { AnimatedTextIconLink1, CodeIcon, EyeIcon } from '@components/';
+import {
+  AnimatedTextIconLink1,
+  CodeIcon,
+  EyeIcon,
+  ImageLazyLoad,
+} from '@components/';
 import { StoreContext } from '@base/src/store';
 import { lazyLoadingImagesData } from '@data/data';
-import { Blurhash } from 'react-blurhash';
 import { getProductionNameOfPath } from '@utils/functions';
 
 export const ProjectCard: React.FC<projectDataType> = ({
@@ -24,13 +22,6 @@ export const ProjectCard: React.FC<projectDataType> = ({
   const {
     filter: { addNewActiveFilter, removeFilterTag, selectedTags, allTags },
   } = useContext(StoreContext);
-
-  const [isLoaded, setLoaded] = useState(false);
-
-  const handleLoad = () => {
-    setLoaded(true);
-    alert('Project loaded: ');
-  };
 
   /**
    *
@@ -51,26 +42,10 @@ export const ProjectCard: React.FC<projectDataType> = ({
     }
   };
 
-  // To get card Dimentions and set blurImgHash with that width
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [cardDim, setCardDim] = useState<{ width: number; height: number }>({
-    width: 350,
-    height: 350,
-  });
-
-  useLayoutEffect(() => {
-    setCardDim({
-      width: Number(cardRef.current?.getBoundingClientRect().width),
-      height: Number(cardRef.current?.getBoundingClientRect().height),
-    });
-  }, [cardRef.current?.getBoundingClientRect().width]);
-
   /** imgSrc in production might be like e.g: /assets/project-1-e5c0642e.png,
    * below logic is to remove the produced version of the img name, to be able to correctly compare ti to images in lazyLoadingImagesData
    */
   let inProductionMode = imgSrc.includes('-');
-
-  // imgSrc = inProductionMode ? getProductionNameOfPath(imgSrc) : imgSrc;
 
   let correspondingHash = inProductionMode
     ? /*@ts-ignore: Get the corresponding hash from lazyLoadingImagesData to show it*/
@@ -79,10 +54,7 @@ export const ProjectCard: React.FC<projectDataType> = ({
       lazyLoadingImagesData[imgSrc].blurhash;
 
   return (
-    <article
-      className="card-wrap w-full sm:w-[350px] bg-[rgba(50,50,50,0.5)] rounded-2xl overflow-hidden flex flex-col flex-start gap-5"
-      ref={cardRef}
-    >
+    <article className="card-wrap w-full sm:w-[350px] bg-[rgba(50,50,50,0.5)] rounded-2xl overflow-hidden flex flex-col flex-start gap-5">
       {/*<!-- 1. Image --> */}
       <picture className="relative flex h-[180px] overflow-hidden justify-center items-center">
         <a
@@ -91,23 +63,10 @@ export const ProjectCard: React.FC<projectDataType> = ({
           tabIndex={-1}
           className="w-full h-full"
         >
-          {!isLoaded && (
-            <Blurhash
-              hash={correspondingHash}
-              width={cardDim.width}
-              height={cardDim.height}
-              resolutionX={32}
-              resolutionY={32}
-              punch={1}
-              className="z-20 absolute inset-0 w-full h-full"
-            />
-          )}
-          <img
+          <ImageLazyLoad
             src={imgSrc}
             alt={imgAlt}
-            onLoad={handleLoad}
-            className="z-10 w-full h-full object-cover"
-            loading="lazy"
+            blurHash={correspondingHash}
           />
         </a>
       </picture>

@@ -9,7 +9,7 @@ import {
   Filters,
   DownloadFileIcon,
 } from '@components/';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useReducer, useState, useRef } from 'react';
 import { StoreContext } from '@base/src/store';
 
 function App() {

@@ -10,6 +10,7 @@ import { Divider } from './common/Divider';
 import { Filters } from './filters/Filters';
 import { FilterTag } from './filters/FilterTag';
 import { AnimatedTextIconLink1 } from './Links/AnimatedTextIconLink1';
+import { ImageLazyLoad } from './common/ImageLazyLoad';
 // icons
 import { DownloadFile as DownloadFileIcon } from './icons/DownloadFile';
 import { Close as CloseIcon } from './icons/Close';
@@ -31,6 +32,7 @@ export {
   FilterTag,
   AnimatedTextIconLink1,
   SectionHeader,
+  ImageLazyLoad,
   // icons
   DownloadFileIcon,
   CloseIcon,
