@@ -1,4 +1,4 @@
-import useOnScreen from '@hooks/useOnScreen';
+import useOnScreenIntersect from '@hooks/useOnScreenIntersect';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Blurhash } from 'react-blurhash';
 
@@ -8,23 +8,19 @@ interface IImageLazyLoad {
   blurHash: string;
 }
 
-export const ImageLazyLoad: React.FC<IImageLazyLoad> = (props) => {
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
-
-  const imageWrapper = useRef<HTMLDivElement>(null);
-  const isImageVisibleOnScreen = useOnScreen(imageWrapper, '0px');
-
-  const afterLoad = useCallback(() => {
-    setTimeout(() => {
-      setIsImageLoaded(true);
-    }, 1000);
-  }, []);
+export const ImageLazyLoad: React.FC<IImageLazyLoad> = ({
+  src,
+  alt,
+  blurHash,
+}) => {
+  const imgRef = useRef<HTMLPictureElement>(null);
+  const isImageVisibleOnScreen = useOnScreenIntersect(imgRef);
 
   const placeholder = useMemo(() => {
-    if (isImageLoaded || !props.blurHash) return <></>;
+    if (!blurHash) return <></>;
     return (
       <Blurhash
-        hash={props.blurHash || ''}
+        hash={blurHash || ''}
         width={'100%'}
         height={'100%'}
         resolutionX={32}
@@ -32,22 +28,23 @@ export const ImageLazyLoad: React.FC<IImageLazyLoad> = (props) => {
         punch={1}
       />
     );
-  }, [isImageLoaded, props.blurHash]);
+  }, [blurHash]);
 
   return (
-    <div ref={imageWrapper} className="w-full h-full">
+    <picture
+      ref={imgRef}
+      className="relative flex justify-center items-center w-full h-full"
+    >
       {placeholder}
       {isImageVisibleOnScreen && (
         <img
-          src={props.src}
+          src={src}
+          /** I put aria-label insted of alt because alt would make text appear over the Blurhash and we don't want that */
+          aria-label={alt}
           loading="lazy"
-          alt={props.alt}
-          onLoad={afterLoad}
-          className={`object-cover h-full w-full rounded-md ${
-            !isImageLoaded ? 'hidden' : ''
-          }`}
+          className={`object-cover h-full w-full absolute inset-0`}
         />
       )}
-    </div>
+    </picture>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { lazyLoadingImagesData } from '@data/data';
 import { getProductionNameOfPath } from '@utils/functions';
 import { ImageLazyLoad } from '@components/';
@@ -20,8 +20,8 @@ export const Avatar: React.FC<AvatarProps> = ({ imgAlt, imgSrc }) => {
       lazyLoadingImagesData[imgSrc].blurhash;
 
   return (
-    <picture className="relative block w-[200px] h-[200px] overflow-hidden rounded-full shadow-xl shadow-cyan-500/50">
+    <div className="relative w-[200px] h-[200px] overflow-hidden rounded-full shadow-xl shadow-cyan-500/50">
       <ImageLazyLoad src={imgSrc} alt={imgAlt} blurHash={correspondingHash} />
-    </picture>
+    </div>
   );
 };

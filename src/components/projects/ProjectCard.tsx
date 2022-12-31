@@ -56,20 +56,14 @@ export const ProjectCard: React.FC<projectDataType> = ({
   return (
     <article className="card-wrap w-full sm:w-[350px] bg-[rgba(50,50,50,0.5)] rounded-2xl overflow-hidden flex flex-col flex-start gap-5">
       {/*<!-- 1. Image --> */}
-      <picture className="relative flex h-[180px] overflow-hidden justify-center items-center">
-        <a
-          href={demoLink}
-          aria-label={imgAlt}
-          tabIndex={-1}
-          className="w-full h-full"
-        >
-          <ImageLazyLoad
-            src={imgSrc}
-            alt={imgAlt}
-            blurHash={correspondingHash}
-          />
-        </a>
-      </picture>
+      <a
+        href={demoLink}
+        aria-label={imgAlt}
+        tabIndex={-1}
+        className="w-full relative flex h-[180px] overflow-hidden justify-center items-center"
+      >
+        <ImageLazyLoad src={imgSrc} alt={imgAlt} blurHash={correspondingHash} />
+      </a>
       {/*<!-- 2. Content --> */}
       <div className="flex flex-col items-center gap-5 sm:items-start text-center sm:text-left p-5 pb-0">
         <a

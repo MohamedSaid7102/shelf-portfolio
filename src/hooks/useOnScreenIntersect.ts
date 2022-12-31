@@ -1,6 +1,6 @@
 import React from 'react';
 
-function useOnScreen(ref: React.RefObject<any>, rootMargin = '0px') {
+function useOnScreenIntersect(ref: React.RefObject<any>, rootMargin = '0px') {
   const [isIntersecting, setIntersecting] = React.useState(false);
 
   React.useEffect(() => {
@@ -20,4 +20,4 @@ function useOnScreen(ref: React.RefObject<any>, rootMargin = '0px') {
   return isIntersecting;
 }
 
-export default useOnScreen;
+export default useOnScreenIntersect;
