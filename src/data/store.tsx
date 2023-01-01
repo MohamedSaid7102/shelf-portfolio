@@ -4,7 +4,7 @@ import {
   CSSTag,
   JSTag,
   GAMETag,
-  REACTJSTag,
+  // REACTJSTag,
   projectsData,
 } from '@data/projectsData';
 import myPic from '@assets/images/myPic.jpg';
@@ -37,13 +37,14 @@ export const Store: storeType = {
     },
   },
   projectsData,
+  selectedProjects: projectsData,
   filter: {
     isFiltering: false,
     allTags: [
       HTMLTag,
       CSSTag,
       JSTag,
-      REACTJSTag,
+      // REACTJSTag,
       GAMETag,
     ] /** You pre select tags, if you remove a tag from here it will be removed from filtering tags list & from projects tags list, so user won't be able to select this tag any more */,
     selectedTags: [] /** You pre select selected tag */,

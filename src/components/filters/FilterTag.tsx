@@ -22,12 +22,22 @@ export const FilterTag: React.FC<FilterTag> = ({ tag }) => {
   return (
     <button
       aria-label={`Filter with ${tag.name}`}
-      className={`relative flex justify-between items-center gap-3 text-[12px] sm:text-[18px] cursor-pointer border border-1 hover:border-[#0be8f4] rounded-3xl py-1 px-5 focus-visible:bg-[#0be8f442] ${
+      className={`relative flex justify-between items-center gap-3 text-[12px] sm:text-[18px] ${
+        tag.disabled
+          ? 'cursor-not-allowed border border-1 border-gray-500 text-gray-400'
+          : 'cursor-pointer border border-1 hover:border-[#0be8f4]'
+      }  rounded-3xl py-1 px-5 focus-visible:bg-[#0be8f442] ${
         isTagSelected(tag) && 'bg-[#0be8f442] border-transparent'
       }`}
+      disabled={tag.disabled}
       onClick={() => {
         isTagSelected(tag) ? removeFilterTag(tag) : addNewActiveFilter(tag);
       }}
+      title={
+        tag.disabled
+          ? `No projects with filters you selected + ${tag.name}`
+          : `Filter with ${tag.name}`
+      }
     >
       <span>{tag.name}</span>
       {isTagSelected(tag) && (

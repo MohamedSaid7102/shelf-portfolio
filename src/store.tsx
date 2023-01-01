@@ -1,5 +1,5 @@
-import React, { createContext, ReactNode, useEffect } from 'react';
-import { storeType, filterTagType } from '@myTypes/';
+import React, { createContext, ReactNode, useEffect, useState } from 'react';
+import { storeType, filterTagType, projectDataType } from '@myTypes/';
 import { Store } from '@data/store';
 
 export const StoreContext = createContext(Store);
@@ -8,7 +8,7 @@ export const StoreContext = createContext(Store);
 export const StoreProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [state, setState] = React.useState<storeType>(Store);
+  const [state, setState] = useState<storeType>(Store);
 
   /**
    * Update the selected state of the tag passed to it <True | False>
@@ -95,6 +95,55 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({
       },
     }));
   };
+
+  /**
+   * MY Algo
+   * 1- Select new filer => that will result in new set of projects.
+   * 2- Loop over those projects and collect all filters and store them in a Set() - to remove dupplication -.
+   * 3- Loop over all filter and if any one them is not included in previous set of filters => make it disabled
+   */
+
+  // Update selectedProjects on filter change
+  useEffect(() => {
+    let newSelectedProjects: projectDataType[] = [];
+    let relatedTags = new Set();
+
+    if (state.filter.selectedTags.length == 0) {
+      newSelectedProjects = state.projectsData;
+      setIsFiltering(false);
+    } else {
+      newSelectedProjects = state.projectsData.filter((project) => {
+        if (
+          state.filter.selectedTags.every((tag) =>
+            project.tagsList.includes(tag)
+          )
+        ) {
+          project.tagsList.forEach((tag) => relatedTags.add(tag));
+          return project;
+        }
+      });
+      setIsFiltering(true);
+    }
+
+    if (relatedTags.size === 0)
+      state.filter.allTags.forEach((tag) => (tag.disabled = false));
+    else
+      state.filter.allTags.forEach(
+        (tag) => (tag.disabled = !relatedTags.has(tag))
+      );
+
+    setState((state) => ({
+      ...state,
+      selectedProjects: newSelectedProjects,
+      filter: {
+        ...state.filter,
+        setIsFiltering,
+        addNewActiveFilter,
+        removeFilterTag,
+        removeAllFilterTags,
+      },
+    }));
+  }, [state.filter.selectedTags]);
 
   // only run once
   useEffect(() => {

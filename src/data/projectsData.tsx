@@ -12,27 +12,32 @@ export const HTMLTag: filterTagType = {
   name: 'html',
   id: uuidv4(),
   selected: false,
+  disabled: false,
 };
 export const CSSTag: filterTagType = {
   name: 'css',
   id: uuidv4(),
   selected: false,
+  disabled: false,
 };
 export const JSTag: filterTagType = {
   name: 'js',
   id: uuidv4(),
   selected: false,
-};
-export const REACTJSTag: filterTagType = {
-  name: 'react.js',
-  id: uuidv4(),
-  selected: false,
+  disabled: false,
 };
 export const GAMETag: filterTagType = {
   name: 'game',
   id: uuidv4(),
   selected: false,
+  disabled: false,
 };
+// export const REACTJSTag: filterTagType = {
+//   name: 'react.js',
+//   id: uuidv4(),
+//   selected: false,
+//   disabled: false,
+// };
 
 // Projects Data
 export const projectsData: projectDataType[] = [

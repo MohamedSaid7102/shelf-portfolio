@@ -29,25 +29,8 @@ function App() {
       },
     },
     filter: { selectedTags, setIsFiltering },
-    projectsData,
+    selectedProjects,
   } = useContext(StoreContext);
-
-  const [projects, setProjects] = useState(projectsData);
-
-  // Filter projects everytime selectedTags change
-  useEffect(() => {
-    if (selectedTags.length == 0) {
-      setProjects(projectsData);
-      setIsFiltering(false);
-    } else {
-      setProjects(
-        projectsData.filter((project) =>
-          selectedTags.every((tag) => project.tagsList.includes(tag))
-        )
-      );
-      setIsFiltering(true);
-    }
-  }, [selectedTags]);
 
   return (
     <div
@@ -78,7 +61,7 @@ function App() {
           {/* Section Header */}
           <SectionHeader title="My Projects" otherContent={<Filters />} />
           {/* Section Content */}
-          <ProjectsList projects={projects} />
+          <ProjectsList projects={selectedProjects} />
         </main>
       </div>
     </div>

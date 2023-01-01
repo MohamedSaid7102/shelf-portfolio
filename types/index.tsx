@@ -12,6 +12,7 @@ export type filterTagType = {
   name: string;
   id: string;
   selected: boolean;
+  disabled: boolean;
 };
 
 export type storeType = {
@@ -33,6 +34,7 @@ export type storeType = {
     };
   };
   projectsData: projectDataType[];
+  selectedProjects: projectDataType[];
   filter: {
     isFiltering: boolean;
     allTags: filterTagType[];
